@@ -1,6 +1,6 @@
-# 🧠 Skill-Master — The Complete Guide to Gemini Agent Skills
+# 🧠 Skill-Master — The Complete Guide to AI Agent Skills
 
-> **A meta-skill that teaches you everything about creating, structuring, and orchestrating Gemini CLI agent skills.**
+> **A meta-skill that teaches you everything about creating, structuring, and orchestrating AI agent skills.**
 
 ---
 
@@ -10,7 +10,7 @@
 - [Quick Start](#quick-start)
 - [Concepts](#concepts)
   - [What Is a Skill?](#what-is-a-skill)
-  - [Skill vs GEMINI.md](#skill-vs-geminimd)
+  - [Skill vs System Instructions](#skill-vs-system-instructions)
   - [Progressive Disclosure](#progressive-disclosure)
 - [Anatomy of a Skill](#anatomy-of-a-skill)
   - [SKILL.md — The Only Required File](#skillmd--the-only-required-file)
@@ -36,14 +36,14 @@
 
 ## What Is This?
 
-This is a **Gemini CLI agent skill** that teaches you about skills themselves. It lives at:
+This is an **AI agent skill** that teaches you about skills themselves. It lives at:
 
 ```
-.gemini/skills/skill-master/
+skills/skill-master/
 ```
 
-When you ask Gemini about skills (e.g., *"How do I create a skill?"*), this skill activates and
-guides you using the reference docs, examples, and scripts included here.
+When you ask your AI agent about skills (e.g., *"How do I create a skill?"*), this skill activates
+and guides you using the reference docs, examples, and scripts included here.
 
 ---
 
@@ -51,15 +51,15 @@ guides you using the reference docs, examples, and scripts included here.
 
 ```bash
 # 1. Scaffold a new skill
-bash .gemini/skills/skill-master/scripts/create-skill.sh my-skill
+bash skills/skill-master/scripts/create-skill.sh my-skill
 
 # 2. Edit the generated SKILL.md
 #    → Fill in the description and instructions
 
 # 3. Validate your skill
-bash .gemini/skills/skill-master/scripts/validate-skill.sh .gemini/skills/my-skill
+bash skills/skill-master/scripts/validate-skill.sh skills/my-skill
 
-# 4. Test it — open Gemini CLI and ask a question your skill should handle
+# 4. Test it — open your AI coding agent and ask a question your skill should handle
 ```
 
 ---
@@ -68,7 +68,7 @@ bash .gemini/skills/skill-master/scripts/validate-skill.sh .gemini/skills/my-ski
 
 ### What Is a Skill?
 
-A skill is a **self-contained directory** that gives the Gemini CLI agent specialised expertise.
+A skill is a **self-contained directory** that gives an AI coding agent specialised expertise.
 Think of it as a "knowledge pack" — the agent loads it only when it recognises a task that
 matches the skill's description.
 
@@ -80,9 +80,11 @@ my-skill/
 └── examples/         ← Optional: templates, samples
 ```
 
-### Skill vs GEMINI.md
+### Skill vs System Instructions
 
-| Aspect        | `GEMINI.md`                           | Skill                                  |
+Most AI agents support a system instructions file (e.g. `GEMINI.md`, `CLAUDE.md`, `.cursorrules`). Here's how skills differ:
+
+| Aspect        | System Instructions                   | Skill                                  |
 |---------------|---------------------------------------|----------------------------------------|
 | **Loading**   | Always loaded (every conversation)    | On-demand (only when matched)          |
 | **Purpose**   | Persistent workspace context          | Specialised, task-specific expertise   |
@@ -90,7 +92,7 @@ my-skill/
 | **Best for**  | Coding style, repo conventions        | Complex workflows, automation          |
 | **Context**   | Always uses context window space      | Zero cost until activated              |
 
-**Rule of thumb:** If it applies to every conversation → `GEMINI.md`. If it's task-specific → Skill.
+**Rule of thumb:** If it applies to every conversation → system instructions. If it's task-specific → Skill.
 
 ### Progressive Disclosure
 
@@ -186,10 +188,10 @@ Rules: lowercase, hyphens only, descriptive, unique.
 
 ```bash
 # Using the scaffolding script (recommended)
-bash .gemini/skills/skill-master/scripts/create-skill.sh api-tester
+bash skills/skill-master/scripts/create-skill.sh api-tester
 
 # Or manually
-mkdir -p .gemini/skills/api-tester
+mkdir -p skills/api-tester
 ```
 
 ### Step 3: Write SKILL.md
@@ -199,9 +201,9 @@ Fill in the frontmatter (especially the description!) and the body instructions.
 ### Step 4: Add Scripts (Optional)
 
 ```bash
-mkdir -p .gemini/skills/api-tester/scripts
+mkdir -p skills/api-tester/scripts
 # Create your script, then:
-chmod +x .gemini/skills/api-tester/scripts/run-tests.sh
+chmod +x skills/api-tester/scripts/run-tests.sh
 ```
 
 Script rules:
@@ -218,12 +220,12 @@ Place `.md` files in `references/` for detailed docs the agent can read when nee
 ### Step 6: Validate
 
 ```bash
-bash .gemini/skills/skill-master/scripts/validate-skill.sh .gemini/skills/api-tester
+bash skills/skill-master/scripts/validate-skill.sh skills/api-tester
 ```
 
 ### Step 7: Test
 
-Open Gemini CLI → ask a question your skill should handle → verify it activates and behaves correctly.
+Open your AI coding agent → ask a question your skill should handle → verify it activates and behaves correctly.
 
 ---
 
@@ -255,23 +257,26 @@ description: >
 
 ## Where Skills Live
 
-Skills are discovered from three locations:
+Skills are typically discovered from three locations:
 
-| Priority | Location                | Scope                       | Use Case                           |
-|----------|-------------------------|-----------------------------|-------------------------------------|
-| 1 (High) | `.gemini/skills/`       | Workspace (project-level)   | Team shared, project-specific       |
-| 2        | `~/.gemini/skills/`     | User (all workspaces)       | Personal defaults                   |
-| 3 (Low)  | Extension-bundled       | Per extension               | Third-party skills                  |
+| Priority | Location                          | Scope                       | Use Case                           |
+|----------|-----------------------------------|-----------------------------|-------------------------------------|
+| 1 (High) | `<workspace>/skills/` or similar  | Workspace (project-level)   | Team shared, project-specific       |
+| 2        | `~/skills/` or user-level dir     | User (all workspaces)       | Personal defaults                   |
+| 3 (Low)  | Extension-bundled                 | Per extension               | Third-party skills                  |
+
+> **Note:** Some agents use vendor-specific paths (e.g. Gemini CLI → `.gemini/skills/`,
+> Claude Code → `.claude/skills/`). This repo uses a generic `skills/` directory at the project root.
 
 **Override rule:** Higher priority wins when two skills share the same `name`.
 
 **Strategy:**
 ```
-~/.gemini/skills/              ← Your personal defaults
+~/skills/                      ← Your personal defaults
 ├── my-coding-style/           ← Your preferred patterns
 └── git-workflow/              ← Your branching strategy
 
-project/.gemini/skills/        ← Project-specific (overrides personal)
+project/<agent>/skills/        ← Project-specific (overrides personal)
 ├── coding-style/              ← Team standards (overrides personal)
 └── deploy/                    ← This project's deployment
 ```
@@ -307,9 +312,9 @@ response  (skill name + purpose)
 ### Precedence Rules
 
 ```
-Workspace (.gemini/skills/)  →  WINS (highest priority)
-User (~/.gemini/skills/)     →  overridden by workspace
-Extension (bundled)          →  overridden by both
+Workspace (project-level skills)  →  WINS (highest priority)
+User (personal skills)            →  overridden by workspace
+Extension (bundled)               →  overridden by both
 ```
 
 ### Composition Patterns
@@ -317,7 +322,7 @@ Extension (bundled)          →  overridden by both
 #### Pattern 1: Independent Skills
 Separate domains, no cross-references.
 ```
-.gemini/skills/
+skills/
 ├── linting/        ← Code style
 ├── database/       ← SQL and migrations
 └── docs/           ← Documentation
@@ -326,7 +331,7 @@ Separate domains, no cross-references.
 #### Pattern 2: Layered Skills
 One skill builds on another.
 ```
-.gemini/skills/
+skills/
 ├── git-basics/         ← Foundation
 └── release-manager/    ← Uses git-basics + adds workflow
 ```
@@ -334,7 +339,7 @@ One skill builds on another.
 #### Pattern 3: Workflow Skills
 A "conductor" skill orchestrates a multi-step process.
 ```
-.gemini/skills/
+skills/
 ├── build/
 ├── test/
 ├── deploy/
@@ -409,13 +414,13 @@ References absolute paths like `/Users/john/projects/my-app/`.
 
 ```bash
 # Basic usage
-bash .gemini/skills/skill-master/scripts/create-skill.sh my-new-skill
+bash skills/skill-master/scripts/create-skill.sh my-new-skill
 
 # Custom location
-bash .gemini/skills/skill-master/scripts/create-skill.sh my-skill ~/other-project/.gemini/skills
+bash skills/skill-master/scripts/create-skill.sh my-skill ~/other-project/skills
 
 # What it creates:
-# .gemini/skills/my-new-skill/
+# skills/my-new-skill/
 # ├── SKILL.md          ← Templated, ready to edit
 # ├── scripts/          ← Empty, add your tools here
 # └── references/       ← Empty, add your docs here
@@ -424,7 +429,7 @@ bash .gemini/skills/skill-master/scripts/create-skill.sh my-skill ~/other-projec
 ### `validate-skill.sh` — Validate Skill Structure
 
 ```bash
-bash .gemini/skills/skill-master/scripts/validate-skill.sh .gemini/skills/my-skill
+bash skills/skill-master/scripts/validate-skill.sh skills/my-skill
 ```
 
 Checks: SKILL.md exists, valid frontmatter, name present, description present, body content exists, scripts executable.
@@ -479,10 +484,10 @@ description: >
 
 | Action                 | Command                                                                  |
 |------------------------|--------------------------------------------------------------------------|
-| Create a skill         | `bash .gemini/skills/skill-master/scripts/create-skill.sh <name>`        |
-| Validate a skill       | `bash .gemini/skills/skill-master/scripts/validate-skill.sh <path>`      |
-| List workspace skills  | `ls .gemini/skills/`                                                     |
-| List user skills       | `ls ~/.gemini/skills/`                                                   |
+| Create a skill         | `bash skills/skill-master/scripts/create-skill.sh <name>`        |
+| Validate a skill       | `bash skills/skill-master/scripts/validate-skill.sh <path>`      |
+| List workspace skills  | `ls skills/`                                                     |
+| List user skills       | `ls ~/skills/`                                                   |
 
 ### Description Formula
 
@@ -524,4 +529,4 @@ skill-dir/
 
 ---
 
-*Built with ❤️ as a learning MVP. Explore the `references/` and `examples/` directories for deeper dives into each topic.*
+*Built with ❤️ as a learning MVP. Skills are an open, agent-agnostic concept — the patterns here work across Gemini CLI, Claude Code, Cursor, and other AI coding agents. Explore the `references/` and `examples/` directories for deeper dives into each topic.*

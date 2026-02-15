@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide walks you through creating a Gemini CLI agent skill from scratch. By the end,
+This guide walks you through creating an AI agent skill from scratch. By the end,
 you'll have a fully functional skill with proper structure, a clear description, and
 optional scripts and references.
 
@@ -22,10 +22,10 @@ Your skill name should be:
 
 ```bash
 # In your workspace
-mkdir -p .gemini/skills/my-skill
+mkdir -p skills/my-skill
 
 # Or use the scaffolding script
-bash .gemini/skills/skill-master/scripts/create-skill.sh my-skill
+bash skills/skill-master/scripts/create-skill.sh my-skill
 ```
 
 ## Step 3: Write the SKILL.md
@@ -95,7 +95,7 @@ Step-by-step behavior for scenario Y.
 Scripts extend your skill with executable tools. Place them in `scripts/`:
 
 ```bash
-mkdir -p .gemini/skills/my-skill/scripts
+mkdir -p skills/my-skill/scripts
 ```
 
 ### Script Best Practices
@@ -134,7 +134,7 @@ echo "Running lint check on: $TARGET"
 References are static documentation the agent reads when it needs context:
 
 ```bash
-mkdir -p .gemini/skills/my-skill/references
+mkdir -p skills/my-skill/references
 ```
 
 Good candidates for references:
@@ -147,7 +147,7 @@ Good candidates for references:
 ## Step 6: Validate Your Skill
 
 ```bash
-bash .gemini/skills/skill-master/scripts/validate-skill.sh .gemini/skills/my-skill
+bash skills/skill-master/scripts/validate-skill.sh skills/my-skill
 ```
 
 The validator checks:
@@ -160,7 +160,7 @@ The validator checks:
 
 ## Step 7: Test Your Skill
 
-1. Open Gemini CLI in your workspace
+1. Open your AI coding agent in your workspace
 2. Ask a question that should trigger your skill
 3. You should see a consent prompt with your skill's name
 4. Approve and verify the agent uses your skill correctly

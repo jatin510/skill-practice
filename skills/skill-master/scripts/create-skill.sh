@@ -1,5 +1,5 @@
 #!/bin/bash
-# create-skill.sh — Scaffold a new Gemini CLI agent skill
+# create-skill.sh — Scaffold a new AI agent skill
 #
 # Usage:
 #   create-skill.sh <skill-name> [target-dir]
@@ -10,7 +10,7 @@
 # Arguments:
 #   skill-name   Name of the new skill (lowercase-with-hyphens)
 #   target-dir   Optional. Where to create the skill.
-#                 Default: .gemini/skills/ in the current workspace
+#                 Default: skills/ in the current workspace
 
 set -e
 
@@ -25,24 +25,24 @@ BOLD='\033[1m'
 # ─── Help ─────────────────────────────────────────────
 if [ -z "$1" ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   echo ""
-  echo -e "${BOLD}create-skill.sh${NC} — Scaffold a new Gemini CLI agent skill"
+  echo -e "${BOLD}create-skill.sh${NC} — Scaffold a new AI agent skill"
   echo ""
   echo -e "${CYAN}Usage:${NC}"
   echo "  create-skill.sh <skill-name> [target-dir]"
   echo ""
   echo -e "${CYAN}Arguments:${NC}"
   echo "  skill-name   Name of the skill (lowercase-with-hyphens)"
-  echo "  target-dir   Where to create the skill (default: .gemini/skills/)"
+  echo "  target-dir   Where to create the skill (default: skills/)"
   echo ""
   echo -e "${CYAN}Examples:${NC}"
   echo "  create-skill.sh api-tester"
-  echo "  create-skill.sh doc-gen ~/my-project/.gemini/skills"
+  echo "  create-skill.sh doc-gen ~/my-project/skills"
   echo ""
   exit 0
 fi
 
 SKILL_NAME="$1"
-TARGET_DIR="${2:-.gemini/skills}"
+TARGET_DIR="${2:-skills}"
 
 # ─── Validate name ────────────────────────────────────
 if [[ ! "$SKILL_NAME" =~ ^[a-z][a-z0-9-]*$ ]]; then
@@ -128,5 +128,5 @@ echo -e "${YELLOW}Next steps:${NC}"
 echo "  1. Edit SKILL.md — fill in the description and instructions"
 echo "  2. Add any scripts to scripts/"
 echo "  3. Add any reference docs to references/"
-echo "  4. Validate: bash .gemini/skills/skill-master/scripts/validate-skill.sh $SKILL_DIR"
+echo "  4. Validate: bash skills/skill-master/scripts/validate-skill.sh $SKILL_DIR"
 echo ""

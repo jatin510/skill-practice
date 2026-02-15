@@ -6,7 +6,7 @@ As your project grows, you'll need different areas of expertise. Instead of one 
 that knows everything, you split concerns:
 
 ```
-.gemini/skills/
+skills/
 ├── frontend/         # React component patterns
 ├── backend/          # API design, database queries
 ├── deploy/           # CI/CD, Docker, deployment
@@ -20,15 +20,15 @@ This keeps each skill **focused**, **maintainable**, and **independently testabl
 When skills from different locations share the same name:
 
 ```
-Workspace (.gemini/skills/)  ──→  WINS (highest priority)
-User (~/.gemini/skills/)     ──→  overridden if workspace has same name
+Workspace (skills/)  ──→  WINS (highest priority)
+User (~/skills/)     ──→  overridden if workspace has same name
 Extension (bundled)          ──→  overridden by both above
 ```
 
 ### Use Case: Override an Extension Skill
 
 If an extension provides a `code-review` skill, but you want custom review rules for your
-project, just create `.gemini/skills/code-review/SKILL.md` in your workspace — it will
+project, just create `skills/code-review/SKILL.md` in your workspace — it will
 override the extension's version.
 
 ## Composition Patterns
@@ -38,7 +38,7 @@ override the extension's version.
 Skills that cover completely separate domains. No cross-references needed.
 
 ```
-.gemini/skills/
+skills/
 ├── linting/          # Code style and linting
 ├── database/         # SQL queries and migrations
 └── documentation/    # Doc generation
@@ -51,7 +51,7 @@ Skills that cover completely separate domains. No cross-references needed.
 Skills that build on each other. The higher-level skill references the lower-level one.
 
 ```
-.gemini/skills/
+skills/
 ├── git-basics/       # Git commands, branching
 └── release-manager/  # Uses git-basics + adds release workflow
 ```
@@ -70,7 +70,7 @@ the agent may also need to use git-basics for branching and merging operations.
 A "conductor" skill that orchestrates a multi-step workflow across other skills.
 
 ```
-.gemini/skills/
+skills/
 ├── build/            # Build the project
 ├── test/             # Run tests
 ├── deploy/           # Deploy to production
@@ -134,12 +134,12 @@ description: Reviews code LOGIC (bugs, edge cases, security vulnerabilities)
 ## Workspace vs. User Skills Strategy
 
 ```
-~/.gemini/skills/           # Your personal defaults
+~/skills/           # Your personal defaults
 ├── my-coding-style/        # Your preferred patterns & conventions
 ├── git-workflow/            # Your standard branching strategy
 └── template-gen/            # Your project templates
 
-project/.gemini/skills/     # Project-specific overrides
+project/skills/     # Project-specific overrides
 ├── coding-style/            # Team standards (overrides personal)
 ├── api-design/              # Project-specific API conventions
 └── deploy/                  # This project's deployment process

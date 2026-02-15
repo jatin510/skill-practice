@@ -2,13 +2,13 @@
 name: hello-world
 description: >
   A demonstration skill that responds to greetings and friendly messages.
-  This is the simplest possible Gemini agent skill — use it as a starting template.
+  This is the simplest possible AI agent skill — use it as a starting template.
 ---
 
 # Hello World Skill
 
 This is the **simplest possible skill**. It demonstrates the minimum structure needed
-for a working Gemini CLI agent skill.
+for a working AI agent skill.
 
 ## What This Skill Does
 

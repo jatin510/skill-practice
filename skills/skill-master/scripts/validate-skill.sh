@@ -1,5 +1,5 @@
 #!/bin/bash
-# validate-skill.sh — Validate a Gemini CLI agent skill directory
+# validate-skill.sh — Validate an AI agent skill directory
 #
 # Usage:
 #   validate-skill.sh <path-to-skill-dir>
@@ -25,13 +25,13 @@ BOLD='\033[1m'
 # ─── Help ─────────────────────────────────────────────
 if [ -z "$1" ] || [ "$1" == "--help" ] || [ "$1" == "-h" ]; then
   echo ""
-  echo -e "${BOLD}validate-skill.sh${NC} — Validate a Gemini CLI agent skill"
+  echo -e "${BOLD}validate-skill.sh${NC} — Validate an AI agent skill"
   echo ""
   echo -e "${CYAN}Usage:${NC}"
   echo "  validate-skill.sh <path-to-skill-dir>"
   echo ""
   echo -e "${CYAN}Example:${NC}"
-  echo "  validate-skill.sh .gemini/skills/my-skill"
+  echo "  validate-skill.sh skills/my-skill"
   echo ""
   exit 0
 fi

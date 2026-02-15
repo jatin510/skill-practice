@@ -1,8 +1,8 @@
-# Anatomy of a Gemini Agent Skill
+# Anatomy of an AI Agent Skill
 
 ## What Is a Skill?
 
-A skill is a **self-contained directory** that gives the Gemini CLI agent specialized expertise
+A skill is a **self-contained directory** that gives an AI coding agent specialized expertise
 on a topic. Think of it as a "knowledge pack" — the agent loads it when it recognizes a task that
 matches the skill's description.
 
@@ -71,13 +71,13 @@ my-skill/
 
 ## Where Skills Live (Discovery Locations)
 
-Skills are discovered from three locations, in order of **precedence**:
+Skills are typically discovered from three locations, in order of **precedence**:
 
-| Priority | Location                   | Scope                        | Version Control |
-|----------|----------------------------|------------------------------|-----------------|
-| 1 (High) | `.gemini/skills/`          | Workspace (project-level)    | ✅ Commit it    |
-| 2        | `~/.gemini/skills/`        | User (all your workspaces)   | Optional        |
-| 3 (Low)  | Extension-bundled skills   | Per extension                | N/A             |
+| Priority | Location                          | Scope                        | Version Control |
+|----------|-----------------------------------|------------------------------|-----------------|
+| 1 (High) | `<workspace>/skills/` or similar  | Workspace (project-level)    | ✅ Commit it    |
+| 2        | `~/skills/` or user-level dir     | User (all your workspaces)   | Optional        |
+| 3 (Low)  | Extension-bundled skills          | Per extension                | N/A             |
 
 **Override rule**: If two skills share the same `name`, the higher-precedence location wins.
 A workspace skill overrides a user skill with the same name.
@@ -86,7 +86,7 @@ A workspace skill overrides a user skill with the same name.
 
 - **Workspace**: Project-specific skills shared with your team (code review standards, deployment steps)
 - **User**: Personal skills you want everywhere (your coding style, personal templates)
-- **Extensions**: Third-party skills from installed Gemini CLI extensions
+- **Extensions**: Third-party skills from installed agent extensions
 
 ## How Activation Works
 
@@ -120,11 +120,11 @@ A workspace skill overrides a user skill with the same name.
 └─────────────────────────┘
 ```
 
-## Key Differences: Skill vs GEMINI.md
+## Key Differences: Skill vs System Instructions
 
-| Aspect        | `GEMINI.md`                        | Skill                              |
-|---------------|------------------------------------|------------------------------------|
-| Loading       | Always loaded                      | On-demand (progressive disclosure) |
-| Purpose       | Persistent workspace context       | Specialized, task-specific expertise|
-| Scope         | Background instructions            | Active tool with scripts + docs    |
-| Best for      | Coding style, repo conventions     | Complex workflows, automation      |
+| Aspect        | System Instructions (e.g. GEMINI.md, CLAUDE.md)  | Skill                              |
+|---------------|--------------------------------------------------|------------------------------------|
+| Loading       | Always loaded                                    | On-demand (progressive disclosure) |
+| Purpose       | Persistent workspace context                     | Specialized, task-specific expertise|
+| Scope         | Background instructions                          | Active tool with scripts + docs    |
+| Best for      | Coding style, repo conventions                   | Complex workflows, automation      |

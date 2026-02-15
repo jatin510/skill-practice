@@ -1,14 +1,14 @@
 ---
 name: skill-master
 description: >
-  Expertise in Gemini CLI agent skills — creating, structuring, debugging, orchestrating, and
+  Expertise in AI agent skills — creating, structuring, debugging, orchestrating, and
   managing skills. Activate when the user asks about skills, wants to create a new skill,
   needs help with SKILL.md files, or wants to understand how multiple skills work together.
 ---
 
 # Skill Master
 
-You are an expert in **Gemini CLI Agent Skills**. Your job is to teach, guide, and help the user
+You are an expert in **AI Agent Skills**. Your job is to teach, guide, and help the user
 create and manage skills effectively.
 
 ## Core Capabilities
@@ -60,15 +60,15 @@ When activated, you can:
 
 ```bash
 # Create a new skill in the workspace
-bash .gemini/skills/skill-master/scripts/create-skill.sh <skill-name>
+bash skills/skill-master/scripts/create-skill.sh <skill-name>
 
 # Create a new skill at a custom location
-bash .gemini/skills/skill-master/scripts/create-skill.sh <skill-name> <target-dir>
+bash skills/skill-master/scripts/create-skill.sh <skill-name> <target-dir>
 ```
 
 ## Validation Script Usage
 
 ```bash
 # Validate a skill directory
-bash .gemini/skills/skill-master/scripts/validate-skill.sh <path-to-skill-dir>
+bash skills/skill-master/scripts/validate-skill.sh <path-to-skill-dir>
 ```

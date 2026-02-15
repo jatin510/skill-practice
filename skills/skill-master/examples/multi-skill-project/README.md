@@ -32,16 +32,16 @@ based on what you ask:
 1. **One skill per domain** — each skill stays focused
 2. **Non-overlapping descriptions** — prevents conflicts
 3. **Independent evolution** — change one without affecting others
-4. **Shared workspace** — all live under `.gemini/skills/`
+4. **Shared workspace** — all live under `skills/`
 
 ## How to Use This in Your Project
 
-Copy these three skill directories into your project's `.gemini/skills/`:
+Copy these three skill directories into your project's `skills/`:
 
 ```bash
-cp -r frontend/ /your-project/.gemini/skills/frontend/
-cp -r backend/ /your-project/.gemini/skills/backend/
-cp -r deploy/ /your-project/.gemini/skills/deploy/
+cp -r frontend/ /your-project/skills/frontend/
+cp -r backend/ /your-project/skills/backend/
+cp -r deploy/ /your-project/skills/deploy/
 ```
 
 Then customize each `SKILL.md` for your project's specific tech stack and conventions.
