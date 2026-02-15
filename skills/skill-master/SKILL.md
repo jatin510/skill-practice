@@ -30,7 +30,7 @@ When activated, you can:
 ### When the user wants to create a skill
 - Read `references/skill-creation-guide.md` for the step-by-step process
 - Ask clarifying questions: What should the skill do? Who is the audience? What tools/scripts does it need?
-- Either run the scaffolding script (`scripts/create-skill.sh <name>`) or walk through manual creation
+- Walk through the creation process agentically — create the directory, write the SKILL.md, add scripts/references as needed
 - After creation, run the validation script (`scripts/validate-skill.sh <path>`) to verify
 
 ### When the user asks about multiple skills / orchestration
@@ -55,16 +55,7 @@ When activated, you can:
 - **Start simple**: Begin with the hello-world example, then build complexity
 - **Validate often**: Use `scripts/validate-skill.sh` after any changes
 - **Keep skills focused**: One skill = one area of expertise. Split when it gets too broad
-
-## Scaffolding Script Usage
-
-```bash
-# Create a new skill in the workspace
-bash skills/skill-master/scripts/create-skill.sh <skill-name>
-
-# Create a new skill at a custom location
-bash skills/skill-master/scripts/create-skill.sh <skill-name> <target-dir>
-```
+- **Create agentically**: Don't use scaffolding scripts — use the agent itself to create skills through conversation, understanding requirements, and generating appropriate content
 
 ## Validation Script Usage
 
@@ -72,3 +63,4 @@ bash skills/skill-master/scripts/create-skill.sh <skill-name> <target-dir>
 # Validate a skill directory
 bash skills/skill-master/scripts/validate-skill.sh <path-to-skill-dir>
 ```
+

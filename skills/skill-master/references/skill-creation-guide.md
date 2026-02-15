@@ -21,12 +21,10 @@ Your skill name should be:
 ## Step 2: Create the Directory
 
 ```bash
-# In your workspace
 mkdir -p skills/my-skill
-
-# Or use the scaffolding script
-bash skills/skill-master/scripts/create-skill.sh my-skill
 ```
+
+Or ask your AI coding agent to create the skill for you agentically — just describe what you need.
 
 ## Step 3: Write the SKILL.md
 

@@ -49,18 +49,13 @@ and guides you using the reference docs, examples, and scripts included here.
 
 ## Quick Start
 
-```bash
-# 1. Scaffold a new skill
-bash skills/skill-master/scripts/create-skill.sh my-skill
+1. **Create a skill directory**: `mkdir -p skills/my-skill`
+2. **Write a `SKILL.md`** with YAML frontmatter (`name` + `description`) and instructions
+3. **Validate**: `bash skills/skill-master/scripts/validate-skill.sh skills/my-skill`
+4. **Test**: Open your AI coding agent and ask a question your skill should handle
 
-# 2. Edit the generated SKILL.md
-#    → Fill in the description and instructions
-
-# 3. Validate your skill
-bash skills/skill-master/scripts/validate-skill.sh skills/my-skill
-
-# 4. Test it — open your AI coding agent and ask a question your skill should handle
-```
+> **Tip**: Most AI coding agents can create skills for you agentically — just ask
+> *"Create a skill called api-tester"* and the agent will handle the rest.
 
 ---
 
@@ -187,12 +182,10 @@ Rules: lowercase, hyphens only, descriptive, unique.
 ### Step 2: Create the Directory
 
 ```bash
-# Using the scaffolding script (recommended)
-bash skills/skill-master/scripts/create-skill.sh api-tester
-
-# Or manually
 mkdir -p skills/api-tester
 ```
+
+Or ask your AI coding agent to create it for you — most agents can scaffold skills agentically.
 
 ### Step 3: Write SKILL.md
 
@@ -410,29 +403,17 @@ References absolute paths like `/Users/john/projects/my-app/`.
 
 ## Helper Scripts
 
-### `create-skill.sh` — Scaffold New Skills
-
-```bash
-# Basic usage
-bash skills/skill-master/scripts/create-skill.sh my-new-skill
-
-# Custom location
-bash skills/skill-master/scripts/create-skill.sh my-skill ~/other-project/skills
-
-# What it creates:
-# skills/my-new-skill/
-# ├── SKILL.md          ← Templated, ready to edit
-# ├── scripts/          ← Empty, add your tools here
-# └── references/       ← Empty, add your docs here
-```
-
 ### `validate-skill.sh` — Validate Skill Structure
 
 ```bash
 bash skills/skill-master/scripts/validate-skill.sh skills/my-skill
 ```
 
-Checks: SKILL.md exists, valid frontmatter, name present, description present, body content exists, scripts executable.
+Checks: SKILL.md exists, valid frontmatter, name valid (lowercase-with-hyphens), description present, body content exists, scripts executable.
+
+> **Creating skills**: Rather than using a scaffolding script, use your AI coding agent
+> to create skills agentically — it can understand your requirements, ask clarifying
+> questions, and generate a well-structured skill through conversation.
 
 ---
 
@@ -484,10 +465,10 @@ description: >
 
 | Action                 | Command                                                                  |
 |------------------------|--------------------------------------------------------------------------|
-| Create a skill         | `bash skills/skill-master/scripts/create-skill.sh <name>`        |
-| Validate a skill       | `bash skills/skill-master/scripts/validate-skill.sh <path>`      |
-| List workspace skills  | `ls skills/`                                                     |
-| List user skills       | `ls ~/skills/`                                                   |
+| Create a skill         | Ask your AI agent: *"Create a skill called \<name\>"*                    |
+| Validate a skill       | `bash skills/skill-master/scripts/validate-skill.sh <path>`              |
+| List workspace skills  | `ls skills/`                                                             |
+| List user skills       | `ls ~/skills/`                                                           |
 
 ### Description Formula
 
