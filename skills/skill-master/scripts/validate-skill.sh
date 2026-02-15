@@ -79,17 +79,18 @@ fi
 if [ -n "$CLOSING_LINE" ]; then
   FRONTMATTER=$(sed -n "2,$((CLOSING_LINE - 1))p" "$SKILL_FILE")
 
-  NAME_VALUE=$(echo "$FRONTMATTER" | grep -E "^name:" | sed 's/^name:\s*//' | tr -d ' ')
+  NAME_VALUE=$(echo "$FRONTMATTER" | grep -E "^name:" | sed 's/^name:[[:space:]]*//' | sed 's/[[:space:]]*$//')
   if [ -z "$NAME_VALUE" ]; then
     echo -e "${RED}✘ Missing 'name' field in frontmatter${NC}"
     ERRORS=$((ERRORS + 1))
   else
     echo -e "${GREEN}✔ name: ${CYAN}$NAME_VALUE${NC}"
 
-    # Check naming convention
+    # Check naming convention: lowercase letters, numbers, and hyphens only
     if [[ ! "$NAME_VALUE" =~ ^[a-z][a-z0-9-]*$ ]]; then
-      echo -e "${YELLOW}⚠ Name should be lowercase-with-hyphens${NC}"
-      WARNINGS=$((WARNINGS + 1))
+      echo -e "${RED}✘ Invalid name '${NAME_VALUE}' — must be lowercase letters, numbers, and hyphens only${NC}"
+      echo "  Try: '$(echo "$NAME_VALUE" | tr '[:upper:] ' '[:lower:]-' | sed 's/[^a-z0-9-]//g')'"
+      ERRORS=$((ERRORS + 1))
     fi
   fi
 
